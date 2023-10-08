@@ -1,22 +1,36 @@
-[![cicd](https://github.com/nogibjj/IDS706_Template_KM632/actions/workflows/python.yml/badge.svg)](https://github.com/nogibjj/IDS706_Template_KM632/actions/workflows/python.yml)
+[![cicd](https://github.com/nogibjj/IDS706_Week5_KM632/actions/workflows/python.yml/badge.svg)](https://github.com/nogibjj/IDS706_Week5_KM632/actions/workflows/python.yml)
 
-This repo is created as a template for my data engineering course. 
+## Working with SQLite
 
- The repo includes skeletons of following:
+In this lab, I perform CRUD operations on a dataset in SQLite. 
 
- * Basic workflow actions (testing, linting, formatting)
- * Makefile
- * requirements.txt
- * VS Code Dev Containers
- * basic main file along with its test file
 
- Usage: 
+* [C] I create a table named "names" which contains fake random 100 names (cleaned the data) from Faker library
+      * In the beginging program drops a table named "names" if it already exists. this ensures that database starts from fresh each time program is run
 
- Add workflow actions: 
+* [R] Retrieves the all names if the last name starts with A
+  Query:
+  
+  cursor.execute("SELECT * FROM people WHERE lastname LIKE 'A%'")
+  results = cursor.fetchall()
 
- 1. Add actions to add under steps of init_build job
- 2. Add commands for your actions in Makefile
- 3. Add any neccessary libraries to be used for your actions in requirements.txt
+    ![Alt Text](Screen Shot 2023-10-08 at 10.34.13 AM.png)
 
- The template is set up in a way that when you push or pull request, CI/CD is automatically executed. 
- If the workflow actions added succesully pass the CI/CD, you will be green check mark on the Action tab.
+* [U] Updates the all lastnames starting with A to be "Fake_lastname"
+  Query:
+
+  cursor.execute("UPDATE people SET lastname = 'Fake_lastname' WHERE lastname LIKE 'A%'")
+  connection.commit()
+
+    ![Alt Text](Screen Shot 2023-10-08 at 10.40.12 AM.png)
+
+* [D] Delete the 10 last entries from the table once the table has been sorted by lastname in ascending order
+  Query:
+
+  cursor.execute("DELETE FROM people ORDER BY lastname ASC LIMIT 10;")
+  connection.commit()
+
+# Test
+
+To test the program, I run another database queries where I check if there is any lastname data where the lastname starts with letter A. 
+Program passes if there is no such data in the database. 

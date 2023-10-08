@@ -12,6 +12,9 @@ names = [name for name in names if len(name) == 2]
 # create database and table if it doesn't already
 
 connection = sqlite3.connect("names.db")
+cursor = connection.cursor()
+cursor.execute('DROP TABLE IF EXISTS people;')
+connection.commit()
 table = "CREATE TABLE IF NOT EXISTS people (id integer primary key, firstname TEXT, lastname TEXT)"
 cursor = connection.cursor()
 cursor.execute(table)
@@ -30,7 +33,6 @@ for row in results:
 
 # (U) Update data
 cursor.execute("UPDATE people SET lastname = 'Fake_lastname' WHERE lastname LIKE 'A%'")
-# Commit the changes
 connection.commit()
 
 # Check if the data has been updated
