@@ -1,3 +1,4 @@
+
 install:
 	pip install --upgrade pip &&\
 		pip install -r requirements.txt
@@ -10,10 +11,12 @@ lint:
 
 format:	
 	black *.py 
+run:
+	python3 main.py
 
 test:
 	python -m pytest -vv --cov=main test_*.py
 	# --cov=main runs code coverage analysis on main 
 	
 		
-all: install lint format test 
+all: install lint format run test 
