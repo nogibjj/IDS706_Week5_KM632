@@ -14,7 +14,7 @@ In this lab, I perform CRUD operations on a dataset in SQLite.
   cursor.execute("SELECT * FROM people WHERE lastname LIKE 'A%'")
   results = cursor.fetchall()
 
-    ![Alt Text](Screen Shot 2023-10-08 at 10.34.13 AM.png)
+    ![Alt Text](1.png)
 
 * [U] Updates the all lastnames starting with A to be "Fake_lastname"
   Query:
@@ -22,7 +22,7 @@ In this lab, I perform CRUD operations on a dataset in SQLite.
   cursor.execute("UPDATE people SET lastname = 'Fake_lastname' WHERE lastname LIKE 'A%'")
   connection.commit()
 
-    ![Alt Text](Screen Shot 2023-10-08 at 10.40.12 AM.png)
+    ![Alt Text](2.png)
 
 * [D] Delete the 10 last entries from the table once the table has been sorted by lastname in ascending order
   Query:
